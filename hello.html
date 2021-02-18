@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1 {font-family:"Helvetica"}
+            p {font-family:"Helvetica"}
+            div {font-family:"Helvetica"}
+        </style>
+        <title>
+            BadUIBattles-password-letter
+        </title>
+    </head>
+    <body>
+        <div>
+            <br/>
+            <br/>
+            <h1><b>Bad Login</b></h1>
+            <b>Username: </b> <input type="text"></input><br/><br/>
+            <b>Password: </b><input type="password" id="pw" oninput="keyLogger()"></input> <button id="view" onclick="changePasswordField()">View</button><br/><br/>
+            <b>Password key logger: </b><b id="keylogger">A</b>
+            <h5 id="invalid" style="color:black"></style>Please input a password.</h5><br/><br/>
+            <button id="submit">Login</button>
+        </div>
+        <script>
+            function changePasswordField() {
+                var input = document.getElementById("pw")
+                if(input.getAttribute("type") == "password"){
+                    input.setAttribute("type", "text");
+                    console.log("asdasd")
+                }
+                else{
+                    input.setAttribute("type", "password")
+                }
+            }
+
+            function keyLogger(){
+                var password = "banana_monster"
+
+                var input = document.getElementById("pw");
+                var lastLetter = input.value.slice(-1);
+                var len = input.value.length;
+
+                document.getElementById("keylogger").innerHTML = lastLetter;
+
+                var inv = document.getElementById("invalid");
+                if(input.value.slice(len-1) == password.charAt(len-1)){
+                    inv.style = "color:green";
+                    inv.innerHTML = "Success!";
+                }
+                else{
+                    inv.style = "color:red";
+                    inv.innerHTML = "Invalid letter, please try again!";
+                    input.value = input.value.slice(0, -1);
+                }
+            }
+        </script>
+    </body>
+</html>
